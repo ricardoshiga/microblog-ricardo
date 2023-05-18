@@ -1,6 +1,12 @@
 <?php 
+require_once "../inc/funcoes-usuarios.php";
 require_once "../inc/cabecalho-admin.php";
+
+/* Chamamos a função lerUsuarios, ao terminar de fazer os processos de comsulta, esta função retorna um array contendo os dados de cada usuário; e guardamos estes dados na variável abaixo. */
+$usuarios = lerUsuarios($conexao);
+
 ?>
+
 
 
 <div class="row">
@@ -30,10 +36,15 @@ require_once "../inc/cabecalho-admin.php";
 
 				<tbody>
 
+<!-- Começar o foreach -->
+
+
+<?php foreach ($usuarios as $usuario) { ?>
+
 					<tr>
-						<td> Nome... </td>
-						<td> E-mail... </td>
-						<td> Tipo... </td>
+						<td> <?= $usuario["nome"] ?> </td>
+						<td> <?= $usuario["email"] ?>  </td>
+						<td> <?= $usuario["tipo"] ?>  </td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
 							href="usuario-atualiza.php">
@@ -46,7 +57,9 @@ require_once "../inc/cabecalho-admin.php";
 							</a>
 						</td>
 					</tr>
-
+					<?php }
+					?>
+<!-- terminar o foreach -->
 				</tbody>                
 			</table>
 	</div>

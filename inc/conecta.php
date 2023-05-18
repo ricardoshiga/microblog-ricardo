@@ -11,10 +11,12 @@ $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
 /* Definindo o chatset UTF8 tambem para a comunicação com o banco de dados */
 mysqli_set_charset($conexao, "utf8");
 
+/* Teste de conecção
+Se der algum problema, para tudo (DIE) e mostra o erro */
 if( !$conexao ) {
     die(mysqli_connect_error($conexao));
-} else {
+} /* else {
     //Senão, deu tudo certo!
     echo "<p>Beleza, banco conectado!</p>";
-}
+} */
 

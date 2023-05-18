@@ -1,5 +1,26 @@
 <?php 
+//Importando o arquivo com funções de usuários
+require_once "../inc/funcoes-usuarios.php";
 require_once "../inc/cabecalho-admin.php";
+/* Detectar se o formulário foi acionado
+(clique no botão, ou ao pressionar Enter) */
+if (isset($_POST["inserir"])){
+	/* Capturar os dados informados */
+	$nome = $_POST["nome"];
+	$email = $_POST["email"];
+	/* No caso da SENHA, capturamos e codificamos */
+	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT) ;
+
+	$tipo = $_POST["tipo"];
+	/* Chamando a função para inserir um novo usuario,
+	e passando para ela os dados capturados a partir 
+	do formulario (mais o parâmetro de $conexao) */
+	inserirUsuario ($conexao, $nome, $email, $senha, $tipo);
+
+	/* Apos inserir novo o usuário, redirecionamos para a página com a lista de usuários do site*/
+	header("location:usuarios.php");
+
+}
 ?>
 
 
