@@ -15,6 +15,6 @@ if( !$conexao ) {
     die(mysqli_connect_error($conexao));
 } else {
     //Senão, deu tudo certo!
-    echo "<p>Beleza, banco conectado</p>";
+    echo "<p>Beleza, banco conectado!</p>";
 }
 
