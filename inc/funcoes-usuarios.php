@@ -18,7 +18,7 @@ function inserirUsuario($conexao, $nome, $email, $senha, $tipo){
 // USada em usuarios.php
 function lerUsuarios($conexao){
     //MOntando o comando SQL SELECT para leitura dos usuarios
-    $sql = "SELECT nome, email, tipo FROM usuarios ORDER BY nome";
+    $sql = "SELECT id, nome, email, tipo FROM usuarios ORDER BY nome";
 
      // Guardando o resultado da operação de consulta SELECT
     $resultado = mysqli_query($conexao, $sql ) 
@@ -40,3 +40,13 @@ function lerUsuarios($conexao){
     return $usuarios;
 
 } //fim de lerUsuarios
+
+
+//Usada em usuario-exclui.php
+function excluiUsuario($conexao, $id){
+/* Montando o comando de exclusão (DELETE) paassando como condição (WHERE) o id do usuário quue será excluido. */
+    $sql = "DELETE FROM usuarios WHERE id = $id";
+
+    /* Executando o comando sql */
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+} //fim excluiUsuario
