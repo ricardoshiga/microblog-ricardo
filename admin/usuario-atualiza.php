@@ -25,13 +25,18 @@ digitada for igual à existente no banco de dados, significa que o usuario não 
 	//Senão, pegue a nova senha e a codifique (hash)
 	$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-}
-    //teste
-    echo $senha;
+} //fim if/else senha
+
+//Chamamos a função para atualizar e passamos os dados capturados
+atualizarUsuario ($conexao, $id, $nome, $senha, $tipo, $email);
+
+/* Redirecionamos para pagina com a lista de usuario */
+
+header("location:usuarios.php"); 
 
 
 
-}
+} //fim if/isset botão
 ?>
 
 

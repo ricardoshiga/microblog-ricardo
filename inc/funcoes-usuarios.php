@@ -67,3 +67,12 @@ function lerUmUsuario($conexao, $id){
 
     return mysqli_fetch_assoc($resultado);
 } //fim lerUmUsuario
+
+//Usada em usuario-atualiza.php
+function atualizarUsuario($conexao, $id, $nome, $senha, $tipo, $email){
+    $sql = "UPDATE usuarios SET nome = '$nome', email  = '$email', senha = '$senha', tipo = '$tipo' WHERE id = $id";
+
+    //Executamos o comando
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+} //fim atualizarUsuario
