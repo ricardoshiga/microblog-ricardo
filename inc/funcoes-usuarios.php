@@ -17,7 +17,7 @@ function inserirUsuario($conexao, $nome, $email, $senha, $tipo){
 
 // USada em usuarios.php
 function lerUsuarios($conexao){
-    //MOntando o comando SQL SELECT para leitura dos usuarios
+    //Montando o comando SQL SELECT para leitura dos usuarios
     $sql = "SELECT id, nome, email, tipo FROM usuarios ORDER BY nome";
 
      // Guardando o resultado da operação de consulta SELECT
@@ -50,3 +50,20 @@ function excluiUsuario($conexao, $id){
     /* Executando o comando sql */
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 } //fim excluiUsuario
+
+
+//Usada em usuario-atualiza.php
+//Função para carregamento e/exebição dos dados de UM USUARIO
+function lerUmUsuario($conexao, $id){
+    //Comando SQL para carregamento dos dadosde um determinado usuario pelo id
+    $sql = "SELECT * FROM usuarios WHERE id = $id";
+
+    /* Executamos a query (resultado) e, em caso de sucesso, guardamos o resultado em memoria. Obs: este resultado ainda não esta pronto par aser usando diretamente na aplicação (ou seja, dentro do formulario/pagina HTML) */
+    $resultado = mysqli_query($conexao, $sql) 
+                 or die(mysqli_error($conexao));
+
+    /* Extraimos de dentro do resultado so o que nos interessa: os dados do usuario selecionado, ja estruturados como um ARRAY ASSOCIATIVO. */
+
+
+    return mysqli_fetch_assoc($resultado);
+} //fim lerUmUsuario
