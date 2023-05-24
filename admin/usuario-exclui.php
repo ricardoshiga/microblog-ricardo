@@ -1,5 +1,8 @@
 <?php
 require_once "../inc/funcoes-usuarios.php";
+require_once "../inc/funcoes-sessao.php";
+
+verificaAcesso();
 
 /* Capturando o valor recebido pelo parametroid atraves da URL */
 $id = $_GET["id"];
