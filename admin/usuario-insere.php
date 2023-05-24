@@ -2,6 +2,11 @@
 //Importando o arquivo com funções de usuários
 require_once "../inc/funcoes-usuarios.php";
 require_once "../inc/cabecalho-admin.php";
+//Se o USUARIO logado não for admin
+if($_SESSION['tipo'] != "admin"){
+	//Então redirecione para não-autorizado
+	header("location:nao-autorizado.php");
+}
 /* Detectar se o formulário foi acionado
 (clique no botão, ou ao pressionar Enter) */
 if (isset($_POST["inserir"])){

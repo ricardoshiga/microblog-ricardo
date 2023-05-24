@@ -1,7 +1,11 @@
 <?php
 require_once "../inc/funcoes-usuarios.php";
 require_once "../inc/funcoes-sessao.php";
-
+//Se o USUARIO logado não for admin
+if($_SESSION['tipo'] != "admin"){
+	//Então redirecione para não-autorizado
+	header("location:nao-autorizado.php");
+}
 verificaAcesso();
 
 /* Capturando o valor recebido pelo parametroid atraves da URL */
