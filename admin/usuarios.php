@@ -18,7 +18,7 @@ $usuarios = lerUsuarios($conexao);
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Usuários <span class="badge bg-dark">X</span>
+		Usuários <span class="badge bg-dark"><?= count($usuarios) ?> </span>
 		</h2>
 
 		<p class="text-center mt-5">
