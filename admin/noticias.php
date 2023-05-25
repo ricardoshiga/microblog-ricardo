@@ -41,7 +41,7 @@ $noticias = lerNoticias($conexao);
 					<tr>
                         <td> <?= $noticia["titulo"] ?> </td>
                         <td> <?= $noticia["data"] ?> </td>
-                        <td> <?= $noticia["usuario_id"] ?> </td>
+                        <td> <?= $noticia["nome"] ?> </td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
 							href="noticia-atualiza.php">
