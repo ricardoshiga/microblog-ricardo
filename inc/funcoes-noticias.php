@@ -87,7 +87,34 @@ function lerUmaNOticia($conexao, $idNoticia, $idUsuarioLogado, $tipoUsuarioLogad
     }
 
     $resultado = mysqli_query($conexao, $sql)
-                 or die(mysqli_error($conexao));
+        or die(mysqli_error($conexao));
 
     return mysqli_fetch_assoc($resultado);
 } // fim lerUmaNoticia
+
+/* Usada em noticia-atualiza.php */
+function atualizaNoticia(
+    $conexao,
+    $titulo,
+    $texto,
+    $resumo,
+    $imagem,
+    $idNoticia,
+    $idUsuarioLogado,
+    $tipoUsuarioLogado
+) {
+
+    if ($tipoUsuarioLogado == 'admin') {
+        $sql = "UPDATE noticias SET 
+        titulo = '$titulo', texto = '$texto', 
+        resumo = '$resumo', imagem = '$imagem'
+        WHERE id = $idNoticia";
+    } else {
+        /* SQL do editor: pode atualizar somente sua propria noticia */
+        $sql = "UPDATE noticias SET
+        titulo = '$titulo', texto = '$texto', 
+        resumo = '$resumo', imagem = '$imagem'
+        WHERE id = $idNoticia AND usuario_id = $idUsuarioLogado";
+    }
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+} // fim atualizarNoticia
