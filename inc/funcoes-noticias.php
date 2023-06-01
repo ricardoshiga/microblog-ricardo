@@ -118,3 +118,19 @@ function atualizaNoticia(
     }
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 } // fim atualizarNoticia
+
+function excluirNoticia($conexao, $idNoticia, $idUsuarioLogado, $tipoUsuarioLogado)
+{
+
+    if ($tipoUsuarioLogado == 'admin') {
+        /* SQL doadmin: pode apagar qualquer noticia pelo id */
+        $sql = "DELETE FROM noticias WHERE id = $idNoticia";
+    } else {
+        /* SQL do editor: pode apagar SOMENTE suas proprias noticias (pelo id da noticia e pelo seu proprio id)  */
+        $sql = "DELETE FROM noticias WHERE id = $idNoticia
+                AND usuario_id = $idUsuarioLogado";
+    }
+
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+} // fim excluirNoticia
