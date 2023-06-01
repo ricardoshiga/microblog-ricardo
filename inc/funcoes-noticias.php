@@ -134,3 +134,68 @@ function excluirNoticia($conexao, $idNoticia, $idUsuarioLogado, $tipoUsuarioLoga
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 } // fim excluirNoticia
+
+function lerTodasNoticias($conexao){
+    //Montando o comando SQL SELECT para leitura dos usuarios
+    $sql = "SELECT * FROM noticias ORDER BY data DESC";
+
+     // Guardando o resultado da operação de consulta SELECT
+    $resultado = mysqli_query($conexao, $sql ) 
+    or die(mysqli_error($conexao));
+
+    /* Criando um array vazio que receberá outros arrays contendo os dados de cada usuário */
+    $noticias = [];
+
+    /* Loop while (enquanto) que a cada ciclo de repetição, erá extrair os dados de cada usuário provenientes do resultado da consulta. Essa extração é feita pela função mysqli_fetch_assoc e é guardada na variável $usuario. */
+    while($noticia = mysqli_fetch_assoc($resultado)){
+
+        /* Pegamos os dados de cada $noticia (array),
+        e os colocamos dentro (array_push)
+        do grande array $noticias. */
+        array_push($noticias, $noticia);
+    }
+
+    /* Levamos para fora da função a matriz $usuarios, contendo os dados de cada $usuario*/
+    return $noticias;
+
+}
+
+/* Usada em noticias.php */
+function lerDetalhes($conexao, $id){
+    $sql = "SELECT
+    noticias.id,
+    noticias.titulo,
+    noticias.data,
+    noticias.imagem,
+    noticias.texto,
+    usuarios.nome
+    FROM noticias INNER JOIN usuarios ON noticias.usuario_id = usuarios.id
+    WHERE noticias.id = $id";
+
+    $resultado = mysqli_query($conexao, $sql)
+                 or die(mysqli_error($conexao));
+
+    return mysqli_fetch_assoc($resultado);             
+
+} // fim lerDetalhes
+
+/* Usada em resultados.php */
+function busca($conexao, $termo){
+    $sql = "SELECT * FROM noticias WHERE 
+                titulo LIKE '%$termo%' OR
+                texto LIKE '%$termo%' OR
+                resumo LIKE '%$termo%' OR
+            ORDER BY data DESC/
+
+    $resultado = mysqli_query($conexao, $sql)
+                 or die(mysqli_error($conexao));
+
+     $noticias = [];
+     
+     while($noticia = mysqli_fetch_assoc($resultado)){
+            array_push($noticias, $noticia);
+     }
+
+     return $noticias;
+
+}  //fim busca

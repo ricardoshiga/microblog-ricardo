@@ -1,40 +1,37 @@
-<?php 
-require "inc/cabecalho.php"; 
-?> 
+<?php
+require "inc/cabecalho.php";
+require "inc/funcoes-noticias.php";
+
+$noticias = lerTodasNoticias($conexao);
+
+
+?>
+
 
 
 <div class="row my-1 mx-md-n1">
 
     <!-- INÍCIO Card -->
-		<div class="col-md-6 my-1 px-md-1">
+    <?php foreach ($noticias as $noticia) { ?>
+        <div class="col-md-6 my-1 px-md-1">
             <article class="card shadow-sm h-100">
-                <a href="noticia.php" class="card-link">
-                    <img src="https://picsum.photos/seed/picsum/200/100" class="card-img-top" alt="...">
+                <a href="noticia.php?id=<?=$noticia['id']?>" class="card-link">
+                    <img src="imagem/<?=$noticia['imagem']?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h3 class="fs-4 card-title">Título da notícia...</h3>
-                        <p class="card-text">Resumo da notícia.</p>
+                        <h3 class="fs-4 card-title"><?=$noticia['titulo']?></h3>
+                        <p class="card-text"><?=$noticia['resumo']?></p>
                     </div>
+
                 </a>
             </article>
-		</div>
-		<!-- FIM Card -->
+        </div>
+        <!-- FIM Card -->
+    <?php } ?>
+    <!-- INÍCIO Card -->
+    
+    <!-- FIM Card -->
+</div>
 
-        <!-- INÍCIO Card -->
-		<div class="col-md-6 my-1 px-md-1">
-            <article class="card shadow-sm h-100">
-                <a href="noticia.php" class="card-link">
-                    <img src="https://picsum.photos/seed/picsum/200/100" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h3 class="fs-4 card-title">Título da notícia...</h3>
-                        <p class="card-text">Resumo da notícia.</p>
-                    </div>
-                </a>
-            </article>
-		</div>
-		<!-- FIM Card -->
-</div>        
-
-<?php 
+<?php
 require_once "inc/rodape.php";
 ?>
-
