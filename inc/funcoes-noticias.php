@@ -184,8 +184,8 @@ function busca($conexao, $termo){
     $sql = "SELECT * FROM noticias WHERE 
                 titulo LIKE '%$termo%' OR
                 texto LIKE '%$termo%' OR
-                resumo LIKE '%$termo%' OR
-            ORDER BY data DESC/
+                resumo LIKE '%$termo%'
+            ORDER BY data DESC";
 
     $resultado = mysqli_query($conexao, $sql)
                  or die(mysqli_error($conexao));
@@ -198,4 +198,4 @@ function busca($conexao, $termo){
 
      return $noticias;
 
-}  //fim busca
+} //fim busca
